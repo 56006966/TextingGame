@@ -1,0 +1,73 @@
+﻿@model TextGame.Models.TextGameViewModel
+
+<div class="container py-4 text-center">
+    <h2 class="mb-4">Texting Game</h2>
+
+    <div class="phone-screen mb-3 mx-auto">
+        <span>@Model.DisplayText</span>
+    </div>
+
+    <form asp-action="PressButton" method="post">
+        <div class="keypad mx-auto">
+            <button type="submit" name="key" value="1" class="phone-btn">1</button>
+            <button type="submit" name="key" value="2" class="phone-btn">2<br><small>ABC</small></button>
+            <button type="submit" name="key" value="3" class="phone-btn">3<br><small>DEF</small></button>
+            <button type="submit" name="key" value="4" class="phone-btn">4<br><small>GHI</small></button>
+            <button type="submit" name="key" value="5" class="phone-btn">5<br><small>JKL</small></button>
+            <button type="submit" name="key" value="6" class="phone-btn">6<br><small>MNO</small></button>
+            <button type="submit" name="key" value="7" class="phone-btn">7<br><small>PQRS</small></button>
+            <button type="submit" name="key" value="8" class="phone-btn">8<br><small>TUV</small></button>
+            <button type="submit" name="key" value="9" class="phone-btn">9<br><small>WXYZ</small></button>
+            <button type="submit" name="key" value="*" class="phone-btn">*</button>
+            <button type="submit" name="key" value="0" class="phone-btn">0<br><small>Space</small></button>
+            <button type="submit" name="key" value="#" class="phone-btn">#</button>
+        </div>
+
+        <input type="hidden" name="CurrentText" value="@Model.CurrentText" />
+        <input type="hidden" name="LastButton" value="@Model.LastButton" />
+        <input type="hidden" name="PressCount" value="@Model.PressCount" />
+
+    </form>
+</div>
+
+<div class="small text-muted">
+    Debug → LastButton: @Model.LastButton | PressCount: @Model.PressCount | CurrentText: @Model.CurrentText
+</div>
+
+<style>
+    .phone-screen {
+        border: 2px solid black;
+        height: 80px;
+        font-size: 1.5rem;
+        background: #f4f4f4;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        padding: 10px;
+        border-radius: 8px;
+        width: 246px;
+        margin-bottom: 15px;
+    }
+
+    .keypad {
+        display: grid;
+        grid-template-columns: repeat(3, 80px);
+        gap: 2px;
+        justify-content: center;
+    }
+
+    .phone-btn {
+        width: 80px;
+        height: 80px;
+        font-size: 1.2rem;
+        border: 2px solid #333;
+        border-radius: 10px;
+        background: #ddd;
+    }
+
+        .phone-btn small {
+            display: block;
+            font-size: 0.75rem;
+            color: #555;
+        }
+</style>
