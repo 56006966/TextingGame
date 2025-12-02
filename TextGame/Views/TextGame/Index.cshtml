@@ -3,10 +3,12 @@
 <div class="container py-4 text-center">
     <h2 class="mb-4">Texting Game</h2>
 
+    <!-- Phone screen -->
     <div class="phone-screen mb-3 mx-auto">
         <span>@Model.DisplayText</span>
     </div>
 
+    <!-- Keypad form -->
     <form asp-action="PressButton" method="post">
         <div class="keypad mx-auto">
             <button type="submit" name="key" value="1" class="phone-btn">1</button>
@@ -19,19 +21,21 @@
             <button type="submit" name="key" value="8" class="phone-btn">8<br><small>TUV</small></button>
             <button type="submit" name="key" value="9" class="phone-btn">9<br><small>WXYZ</small></button>
             <button type="submit" name="key" value="*" class="phone-btn">*</button>
-            <button type="submit" name="key" value="0" class="phone-btn">0<br><small>Space</small></button>
+            <button type="submit" name="key" value="0" class="phone-btn">0<br><small>Next</small></button>
             <button type="submit" name="key" value="#" class="phone-btn">#</button>
         </div>
 
+        <!-- Hidden fields to preserve T9 and story state -->
         <input type="hidden" name="CurrentText" value="@Model.CurrentText" />
         <input type="hidden" name="LastButton" value="@Model.LastButton" />
         <input type="hidden" name="PressCount" value="@Model.PressCount" />
-
+        <input type="hidden" name="StoryIndex" value="@Model.StoryIndex" />
     </form>
 </div>
 
-<div class="small text-muted">
-    Debug → LastButton: @Model.LastButton | PressCount: @Model.PressCount | CurrentText: @Model.CurrentText
+<!-- Debug info -->
+<div class="small text-muted mt-2">
+    Debug → LastButton: @Model.LastButton | PressCount: @Model.PressCount | CurrentText: @Model.CurrentText | StoryIndex: @Model.StoryIndex
 </div>
 
 <style>
@@ -42,11 +46,12 @@
         background: #f4f4f4;
         display: flex;
         align-items: center;
-        justify-content: left;
+        justify-content: flex-start;
         padding: 10px;
         border-radius: 8px;
         width: 246px;
         margin-bottom: 15px;
+        overflow-x: auto;
     }
 
     .keypad {
@@ -63,6 +68,7 @@
         border: 2px solid #333;
         border-radius: 10px;
         background: #ddd;
+        cursor: pointer;
     }
 
         .phone-btn small {
